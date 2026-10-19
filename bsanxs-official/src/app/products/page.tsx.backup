@@ -1,0 +1,194 @@
+import Link from "next/link";
+
+const products = [
+  {
+    name: "MaliMind",
+    category: "FINANCIAL TECHNOLOGY",
+    description:
+      "AI-powered financial technology designed to support smarter money management and financial decisions.",
+    status: "IN DEVELOPMENT",
+  },
+  {
+    name: "NjiaSafe",
+    category: "MOBILITY & ROAD SAFETY",
+    description:
+      "Intelligent navigation and road safety technology built with African mobility challenges in mind.",
+    status: "IN DEVELOPMENT",
+  },
+  {
+    name: "Safura",
+    category: "AI & FOOD TECHNOLOGY",
+    description:
+      "AI-powered food scanning designed to make food information more accessible.",
+    status: "IN DEVELOPMENT",
+  },
+  {
+    name: "Mboka",
+    category: "COMMUNITY & CONNECTIVITY",
+    description:
+      "Digital community and connectivity solutions designed to bring people and opportunities closer.",
+    status: "IN DEVELOPMENT",
+  },
+  {
+    name: "Vuna",
+    category: "DIGITAL INNOVATION",
+    description:
+      "A digital product initiative focused on practical technology and new opportunities.",
+    status: "IN DEVELOPMENT",
+  },
+  {
+    name: "Fixxo",
+    category: "DIGITAL SOLUTIONS",
+    description:
+      "Smart digital solutions built to address everyday problems through technology.",
+    status: "IN DEVELOPMENT",
+  },
+  {
+    name: "BOHENIX Flow AI",
+    category: "AI & BUSINESS AUTOMATION",
+    description:
+      "An AI workforce and business automation platform developed under the BOHENIX AI brand.",
+    status: "IN DEVELOPMENT",
+  },
+];
+
+const contactEmail = "hello@bsanxs.com";
+
+export default function ProductsPage() {
+  return (
+    <main className="products-page">
+      <header className="products-nav">
+        <Link href="/" className="products-brand">
+          <img src="/images/bsanxs-logo.png" alt="BSANXS" />
+        </Link>
+
+        <nav aria-label="Main navigation">
+          <Link href="/">Home</Link>
+          <Link href="/products" aria-current="page">Products</Link>
+          <a href="#community">Community</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section className="products-hero">
+        <span className="products-eyebrow">
+          BSANXS / OUR PRODUCT PORTFOLIO
+        </span>
+
+        <h1>
+          Ideas into systems.
+          <br />
+          <span>Technology into impact.</span>
+        </h1>
+
+        <p>
+          We develop digital products and intelligent systems designed
+          to solve meaningful problems and create new possibilities.
+        </p>
+
+        <a className="products-hero-link" href="#portfolio">
+          EXPLORE OUR PRODUCTS <span>↘</span>
+        </a>
+      </section>
+
+      <section className="products-portfolio" id="portfolio">
+        <div className="products-section-heading">
+          <span>01 / THE PORTFOLIO</span>
+          <p>
+            A growing ecosystem of products built around different
+            challenges, industries and opportunities.
+          </p>
+        </div>
+
+        <div className="products-grid">
+          {products.map((product, index) => (
+            <article className="product-card" key={product.name}>
+              <div className="product-card-top">
+                <span className="product-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="product-status">{product.status}</span>
+              </div>
+
+              <span className="product-category">{product.category}</span>
+              <h2>{product.name}</h2>
+              <p>{product.description}</p>
+
+              <a
+                className="product-inquiry"
+                href={`mailto:${contactEmail}?subject=${encodeURIComponent(
+                  `Product enquiry — ${product.name}`
+                )}`}
+              >
+                ENQUIRE ABOUT THIS PRODUCT <span>↗</span>
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div className="products-services">
+          <span>NEED A SOLUTION BUILT FOR YOUR BUSINESS?</span>
+          <h2>Our services turn complex ideas into working systems.</h2>
+          <p>
+            Explore custom software development, web applications,
+            digital platforms and technology consulting.
+          </p>
+          <a href={`mailto:${contactEmail}?subject=BSANXS%20Services%20Enquiry`}>
+            DISCUSS A PROJECT ↗
+          </a>
+        </div>
+      </section>
+
+      <section className="products-community" id="community">
+        <span>02 / THE COMMUNITY</span>
+        <h2>Build with us.</h2>
+        <p>
+          Follow the journey, discover new releases and connect with
+          the people building what comes next.
+        </p>
+
+        <div className="community-links">
+          <a href={`mailto:${contactEmail}?subject=BSANXS%20Community`}>
+            JOIN THE COMMUNITY <span>↗</span>
+          </a>
+          <a href={`mailto:${contactEmail}?subject=BSANXS%20Partnership`}>
+            PARTNER WITH US <span>↗</span>
+          </a>
+        </div>
+
+        <p className="community-note">
+          Official social media profiles will be linked here once confirmed.
+        </p>
+      </section>
+
+      <section className="products-contact" id="contact">
+        <span>03 / START A CONVERSATION</span>
+        <h2>Have something in mind?</h2>
+        <p>
+          For product enquiries, partnerships, business services or
+          general questions, get in touch with our team.
+        </p>
+        <a href={`mailto:${contactEmail}?subject=BSANXS%20Enquiry`}>
+          {contactEmail} ↗
+        </a>
+        <p className="contact-disclaimer">
+          Please verify this email address is active before publishing.
+        </p>
+      </section>
+
+      <footer className="products-footer">
+        <Link href="/" className="products-footer-brand">
+          <img src="/images/bsanxs-logo.png" alt="BSANXS" />
+        </Link>
+        <span>Technology. Intentionally engineered.</span>
+        <span>© 2026 BSANXS</span>
+        <a href="#top" onClick={(event) => {
+          event.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}>
+          BACK TO TOP ↑
+        </a>
+      </footer>
+    </main>
+  );
+}
