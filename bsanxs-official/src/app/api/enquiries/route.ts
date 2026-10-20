@@ -1,5 +1,8 @@
+import { setDefaultResultOrder } from "node:dns";
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+
+setDefaultResultOrder("ipv4first");
 
 function validEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
