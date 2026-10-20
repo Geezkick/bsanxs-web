@@ -20,6 +20,7 @@ const services = [
     number: "01",
     icon: Code2,
     title: "Software Engineering",
+    slug: "software-engineering",
     description:
       "Purpose-built websites, web applications, APIs and scalable software engineered around real business needs.",
     tags: ["Web applications", "Full-stack", "APIs"],
@@ -28,6 +29,7 @@ const services = [
     number: "02",
     icon: Cpu,
     title: "AI & Intelligent Systems",
+    slug: "ai-intelligent-systems",
     description:
       "AI integrations, intelligent workflows and automation designed to make complex operations more effective.",
     tags: ["AI integration", "Automation", "AI agents"],
@@ -36,6 +38,7 @@ const services = [
     number: "03",
     icon: Network,
     title: "Systems & Integration",
+    slug: "systems-integration",
     description:
       "Connected technology ecosystems linking software, devices, data, infrastructure and business processes.",
     tags: ["APIs", "Infrastructure", "Device integration"],
@@ -44,6 +47,7 @@ const services = [
     number: "04",
     icon: Layers3,
     title: "Hardware & Electronics Prototyping",
+    slug: "hardware-electronics-prototyping",
     description:
       "Early-stage electronic concepts, sensor systems and microcontroller-based prototypes developed and tested against defined requirements.",
     tags: ["Electronics", "Sensors", "Proof of concept"],
@@ -52,6 +56,7 @@ const services = [
     number: "05",
     icon: Cpu,
     title: "Embedded Systems & IoT",
+    slug: "embedded-systems-iot",
     description:
       "Firmware, connected devices and hardware–software solutions that collect data, communicate and automate real-world tasks.",
     tags: ["Embedded firmware", "IoT", "Connected devices"],
@@ -60,6 +65,7 @@ const services = [
     number: "06",
     icon: Layers3,
     title: "3D Printing & Product Design",
+    slug: "3d-printing-product-design",
     description:
       "Physical concept models, custom enclosures and functional prototypes, supported by product design and fabrication planning.",
     tags: ["3D printing", "Product prototypes", "Enclosures"],
@@ -467,7 +473,8 @@ export default function Home() {
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <motion.article
+              <motion.a
+                href={`/services/${service.slug}`}
                 className="service-card"
                 key={service.number}
                 initial={{ opacity: 0, y: 22 }}
@@ -511,7 +518,7 @@ export default function Home() {
                   </div>
                 </div>
                 <ArrowUpRight className="service-arrow" size={20} />
-              </motion.article>
+              </motion.a>
             );
           })}
         </div>
