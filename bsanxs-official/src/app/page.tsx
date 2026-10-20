@@ -483,11 +483,11 @@ export default function Home() {
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
                   {index === 0 && (
-                    <img className="service-image" src="/images/service-software.png"
+                    <img className="service-image" src="/images/service-software-new.jpg"
                       alt="BSANXS software engineering" loading="lazy" />
                   )}
                   {index === 1 && (
-                    <img className="service-image" src="/images/service-ai.jpg"
+                    <img className="service-image" src="/images/service-ai-new.png"
                       alt="BSANXS AI and intelligent systems" loading="lazy" />
                   )}
                   {index === 2 && (
