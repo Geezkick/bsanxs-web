@@ -342,7 +342,7 @@ export default function Home() {
             transition={{ duration: 0.7 }}
           >
             <span className="status-dot" />
-            INDEPENDENT TECHNOLOGY COMPANY
+            BSANXS TECHNOLOGIES
           </motion.div>
 
           <motion.h1
