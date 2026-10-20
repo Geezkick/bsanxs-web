@@ -21,7 +21,7 @@ const services = [
     icon: Code2,
     title: "Software Engineering",
     description:
-      "Purpose-built digital products, web applications and scalable software engineered around real business needs.",
+      "Purpose-built websites, web applications, APIs and scalable software engineered around real business needs.",
     tags: ["Web applications", "Full-stack", "APIs"],
   },
   {
@@ -29,7 +29,7 @@ const services = [
     icon: Cpu,
     title: "AI & Intelligent Systems",
     description:
-      "Practical AI solutions and intelligent workflows that help businesses operate with greater clarity and efficiency.",
+      "AI integrations, intelligent workflows and automation designed to make complex operations more effective.",
     tags: ["AI integration", "Automation", "AI agents"],
   },
   {
@@ -37,16 +37,32 @@ const services = [
     icon: Network,
     title: "Systems & Integration",
     description:
-      "Connected technology ecosystems that bring platforms, data and business processes together.",
-    tags: ["Integrations", "Infrastructure", "Data systems"],
+      "Connected technology ecosystems linking software, devices, data, infrastructure and business processes.",
+    tags: ["APIs", "Infrastructure", "Device integration"],
   },
   {
     number: "04",
     icon: Layers3,
-    title: "Digital Product Development",
+    title: "Hardware & Electronics Prototyping",
     description:
-      "From early-stage concepts to production-ready platforms, we turn ambitious ideas into usable digital products.",
-    tags: ["MVP development", "Product strategy", "UX engineering"],
+      "Early-stage electronic concepts, sensor systems and microcontroller-based prototypes developed and tested against defined requirements.",
+    tags: ["Electronics", "Sensors", "Proof of concept"],
+  },
+  {
+    number: "05",
+    icon: Cpu,
+    title: "Embedded Systems & IoT",
+    description:
+      "Firmware, connected devices and hardware–software solutions that collect data, communicate and automate real-world tasks.",
+    tags: ["Embedded firmware", "IoT", "Connected devices"],
+  },
+  {
+    number: "06",
+    icon: Layers3,
+    title: "3D Printing & Product Design",
+    description:
+      "Physical concept models, custom enclosures and functional prototypes, supported by product design and fabrication planning.",
+    tags: ["3D printing", "Product prototypes", "Enclosures"],
   },
 ];
 
@@ -215,9 +231,13 @@ function ProjectEnquiryForm() {
             <option value="">Select a service</option>
             <option value="Software Engineering">Software Engineering</option>
             <option value="AI & Intelligent Systems">AI & Intelligent Systems</option>
-            <option value="Systems Integration">Systems Integration</option>
+            <option value="Systems Integration">Systems & Hardware Integration</option>
             <option value="Digital Product Development">Digital Product Development</option>
-            <option value="Other">Other</option>
+            <option value="Hardware & Electronics Prototyping">Hardware & Electronics Prototyping</option>
+            <option value="Embedded Systems & IoT">Embedded Systems & IoT</option>
+            <option value="3D Printing & Product Design">3D Printing & Product Design</option>
+            <option value="Engineering Design">Engineering Design & Technical Consulting</option>
+            <option value="Other">Other / Custom Project</option>
           </select>
         </label>
 
@@ -298,6 +318,7 @@ export default function Home() {
 
         <nav className={`nav-links ${menuOpen ? "nav-open" : ""}`}>
           <a href="#services" onClick={closeMenu}>Capabilities</a>
+          <a href="#pricing" onClick={closeMenu}>Pricing</a>
           <a href="/products" onClick={closeMenu}>Products</a>
           <a href="#approach" onClick={closeMenu}>Our approach</a>
           <a href="#about" onClick={closeMenu}>About</a>
@@ -474,8 +495,8 @@ export default function Home() {
                       alt="BSANXS systems and integration" loading="lazy" />
                   )}
                   {index === 3 && (
-                    <img className="service-image" src="/images/service-products.png"
-                      alt="BSANXS digital product development" loading="lazy" />
+                    <img className="service-image" src="/images/service-hardware.jpg"
+                      alt="BSANXS hardware and electronics prototyping" loading="lazy" />
                   )}
                   <div className="service-tags">
                     {service.tags.map((tag) => <span key={tag}>{tag}</span>)}
@@ -486,6 +507,200 @@ export default function Home() {
             );
           })}
         </div>
+      </section>
+
+      <section className="pricing section-pad" id="pricing">
+        <div className="section-label">
+          <span>03 / ENGINEERING & ENGAGEMENT</span>
+          <span>PROPOSED STARTING PRICES</span>
+        </div>
+
+        <div className="pricing-heading">
+          <h2>From digital ideas<br /><span>to physical systems.</span></h2>
+          <p>
+            Software, electronics and physical product prototyping under one
+            engineering partner. Each engagement is scoped to your requirements,
+            materials, timeline and technical complexity.
+          </p>
+        </div>
+
+        <div className="pricing-grid">
+          <article className="pricing-card">
+            <span className="pricing-index">01 / SOFTWARE</span>
+            <h3>Digital Launch</h3>
+            <p className="pricing-description">
+              A professional digital presence for startups and growing businesses.
+            </p>
+            <div className="pricing-price">
+              <span>Starting at</span>
+              <strong>KSh 35,000</strong>
+            </div>
+            <ul>
+              <li>Up to 5 agreed website pages</li>
+              <li>Responsive design</li>
+              <li>Contact form or WhatsApp link</li>
+              <li>Basic on-page SEO</li>
+              <li>One revision round</li>
+            </ul>
+            <a className="pricing-cta" href="#contact"
+              onClick={() => {
+                const field = document.querySelector<HTMLSelectElement>('[name="service"]');
+                if (field) field.value = "Software Engineering";
+                const message = document.querySelector<HTMLTextAreaElement>('[name="message"]');
+                if (message && !message.value.trim()) message.value = "I'd like to discuss the Digital Launch website package starting at KSh 35,000.";
+              }}>
+              Discuss software <ArrowUpRight size={17} />
+            </a>
+          </article>
+
+          <article className="pricing-card pricing-featured">
+            <span className="pricing-index">02 / APPLICATIONS</span>
+            <span className="pricing-badge">CUSTOM DIGITAL PRODUCTS</span>
+            <h3>Business Applications</h3>
+            <p className="pricing-description">
+              Purpose-built applications and connected workflows for business operations.
+            </p>
+            <div className="pricing-price">
+              <span>Starting at</span>
+              <strong>KSh 65,000</strong>
+            </div>
+            <ul>
+              <li>Scoped web application or dashboard</li>
+              <li>Database and API integration</li>
+              <li>Responsive user interface</li>
+              <li>Testing and deployment</li>
+              <li>Agreed milestones and revisions</li>
+            </ul>
+            <a className="pricing-cta" href="#contact"
+              onClick={() => {
+                const field = document.querySelector<HTMLSelectElement>('[name="service"]');
+                if (field) field.value = "Digital Product Development";
+                const message = document.querySelector<HTMLTextAreaElement>('[name="message"]');
+                if (message && !message.value.trim()) message.value = "I'd like a quote for a custom business application or dashboard starting at KSh 65,000.";
+              }}>
+              Discuss applications <ArrowUpRight size={17} />
+            </a>
+          </article>
+
+          <article className="pricing-card">
+            <span className="pricing-index">03 / ELECTRONICS</span>
+            <h3>Electronics Prototype</h3>
+            <p className="pricing-description">
+              Early-stage electronic concepts and functional proof-of-concept builds.
+            </p>
+            <div className="pricing-price">
+              <span>Starting at</span>
+              <strong>KSh 15,000</strong>
+            </div>
+            <ul>
+              <li>Initial requirements review</li>
+              <li>Basic circuit or sensor prototype</li>
+              <li>Microcontroller setup where suitable</li>
+              <li>Prototype testing and findings</li>
+              <li>Parts and fabrication quoted separately</li>
+            </ul>
+            <a className="pricing-cta" href="#contact"
+              onClick={() => {
+                const field = document.querySelector<HTMLSelectElement>('[name="service"]');
+                if (field) field.value = "Hardware & Electronics Prototyping";
+                const message = document.querySelector<HTMLTextAreaElement>('[name="message"]');
+                if (message && !message.value.trim()) message.value = "I'd like to discuss an electronics or hardware prototype. Please help scope the requirements and parts.";
+              }}>
+              Discuss electronics <ArrowUpRight size={17} />
+            </a>
+          </article>
+
+          <article className="pricing-card">
+            <span className="pricing-index">04 / EMBEDDED & IOT</span>
+            <h3>Connected Devices</h3>
+            <p className="pricing-description">
+              Firmware and connected-device prototypes that link sensors, hardware and software.
+            </p>
+            <div className="pricing-price">
+              <span>Starting at</span>
+              <strong>KSh 30,000</strong>
+            </div>
+            <ul>
+              <li>Embedded firmware prototype</li>
+              <li>Sensor or device communication</li>
+              <li>Basic data capture or monitoring</li>
+              <li>Hardware–software integration</li>
+              <li>Components quoted separately</li>
+            </ul>
+            <a className="pricing-cta" href="#contact"
+              onClick={() => {
+                const field = document.querySelector<HTMLSelectElement>('[name="service"]');
+                if (field) field.value = "Embedded Systems & IoT";
+                const message = document.querySelector<HTMLTextAreaElement>('[name="message"]');
+                if (message && !message.value.trim()) message.value = "I'd like to discuss an embedded systems, IoT or hardware–software integration project.";
+              }}>
+              Discuss connected devices <ArrowUpRight size={17} />
+            </a>
+          </article>
+
+          <article className="pricing-card">
+            <span className="pricing-index">05 / 3D FABRICATION</span>
+            <h3>3D Printing</h3>
+            <p className="pricing-description">
+              Physical models and prototype parts for product concepts and engineering projects.
+            </p>
+            <div className="pricing-price">
+              <span>Starting at</span>
+              <strong>KSh 2,500</strong>
+            </div>
+            <ul>
+              <li>Small-print job assessment</li>
+              <li>Concept models or simple parts</li>
+              <li>Enclosures and product mock-ups</li>
+              <li>Print feasibility review</li>
+              <li>Material, size and finishing affect cost</li>
+            </ul>
+            <a className="pricing-cta" href="#contact"
+              onClick={() => {
+                const field = document.querySelector<HTMLSelectElement>('[name="service"]');
+                if (field) field.value = "3D Printing & Product Design";
+                const message = document.querySelector<HTMLTextAreaElement>('[name="message"]');
+                if (message && !message.value.trim()) message.value = "I'd like a quote for 3D printing or a physical product prototype. I'll share the dimensions and design details.";
+              }}>
+              Discuss 3D printing <ArrowUpRight size={17} />
+            </a>
+          </article>
+
+          <article className="pricing-card">
+            <span className="pricing-index">06 / CUSTOM ENGINEERING</span>
+            <h3>Integrated Solutions</h3>
+            <p className="pricing-description">
+              Multidisciplinary projects combining software, electronics, devices and product design.
+            </p>
+            <div className="pricing-price">
+              <span>Custom quotation</span>
+              <strong>Scoped to project</strong>
+            </div>
+            <ul>
+              <li>Requirements and feasibility review</li>
+              <li>Software and hardware architecture</li>
+              <li>Integration and prototype planning</li>
+              <li>Testing and agreed documentation</li>
+              <li>Milestones and costs agreed in advance</li>
+            </ul>
+            <a className="pricing-cta" href="#contact"
+              onClick={() => {
+                const field = document.querySelector<HTMLSelectElement>('[name="service"]');
+                if (field) field.value = "Engineering Design";
+                const message = document.querySelector<HTMLTextAreaElement>('[name="message"]');
+                if (message && !message.value.trim()) message.value = "I'd like to discuss a custom engineering project combining software, hardware, electronics or product design.";
+              }}>
+              Scope a project <ArrowUpRight size={17} />
+            </a>
+          </article>
+        </div>
+
+        <p className="pricing-note">
+          All prices are indicative starting estimates in Kenyan shillings, not fixed quotations.
+          Final pricing depends on requirements, complexity and agreed deliverables. Components,
+          materials, 3D printing, fabrication, shipping, hosting, domains and third-party services
+          may be charged separately. Work begins after scope, costs and milestones are agreed.
+        </p>
       </section>
 
       <section className="statement">
