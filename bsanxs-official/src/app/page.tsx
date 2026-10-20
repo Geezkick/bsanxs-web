@@ -416,6 +416,16 @@ export default function Home() {
             </a>
           </div>
         </div>
+
+        <div className="leadership-card">
+          <img className="leadership-image" src="/images/brian.png"
+            alt="Brian Nyarienya, CEO of BSANXS" loading="lazy" />
+          <div className="leadership-copy">
+            <span className="leadership-label">LEADERSHIP</span>
+            <h3>Brian Nyarienya</h3>
+            <p>Chief Executive Officer</p>
+          </div>
+        </div>
       </section>
 
       <section className="services section-pad" id="services">
@@ -451,6 +461,22 @@ export default function Home() {
                 <div className="service-main">
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>
+                  {index === 0 && (
+                    <img className="service-image" src="/images/service-software.png"
+                      alt="BSANXS software engineering" loading="lazy" />
+                  )}
+                  {index === 1 && (
+                    <img className="service-image" src="/images/service-ai.jpg"
+                      alt="BSANXS AI and intelligent systems" loading="lazy" />
+                  )}
+                  {index === 2 && (
+                    <img className="service-image" src="/images/service-network.png"
+                      alt="BSANXS systems and integration" loading="lazy" />
+                  )}
+                  {index === 3 && (
+                    <img className="service-image" src="/images/service-products.png"
+                      alt="BSANXS digital product development" loading="lazy" />
+                  )}
                   <div className="service-tags">
                     {service.tags.map((tag) => <span key={tag}>{tag}</span>)}
                   </div>

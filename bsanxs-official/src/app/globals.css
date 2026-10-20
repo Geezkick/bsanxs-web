@@ -1682,3 +1682,99 @@ body:has(.products-page) {
     align-self: flex-start;
   }
 }
+
+/* BSANXS hero photography */
+.hero {
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(8, 9, 11, 0.96) 0%,
+      rgba(8, 9, 11, 0.84) 42%,
+      rgba(8, 9, 11, 0.38) 100%
+    ),
+    url("/images/12381.jpg");
+  background-size: cover;
+  background-position: center right;
+}
+
+.hero-footer {
+  z-index: 2;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    background-position: 58% center;
+  }
+}
+
+/* BSANXS service and leadership photography */
+.service-image {
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: clamp(150px, 22vw, 260px);
+  margin-top: 24px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 3px;
+}
+
+.leadership-card {
+  display: grid;
+  grid-template-columns: minmax(180px, 280px) 1fr;
+  align-items: center;
+  gap: clamp(24px, 5vw, 64px);
+  margin-top: 64px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+}
+
+.leadership-image {
+  display: block;
+  width: 100%;
+  max-height: 340px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  background: #15131b;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 3px;
+}
+
+.leadership-label {
+  color: var(--purple);
+  font: 10px var(--mono);
+  letter-spacing: 1.3px;
+}
+
+.leadership-copy h3 {
+  margin: 15px 0 8px;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 500;
+  letter-spacing: -.06em;
+}
+
+.leadership-copy p {
+  margin: 0;
+  color: #a4a2ad;
+  font-size: 14px;
+}
+
+@media (max-width: 700px) {
+  .service-image {
+    height: 190px;
+    margin-top: 18px;
+  }
+
+  .leadership-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    margin-top: 42px;
+  }
+
+  .leadership-image {
+    max-width: 320px;
+    max-height: 380px;
+  }
+}
