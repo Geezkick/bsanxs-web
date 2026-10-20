@@ -1,8 +1,23 @@
 import { setDefaultResultOrder } from "node:dns";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
 setDefaultResultOrder("ipv4first");
+
+const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
+const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+
+const enquiryRateLimit =
+  redisUrl && redisToken
+    ? new Ratelimit({
+        redis: new Redis({ url: redisUrl, token: redisToken }),
+        limiter: Ratelimit.slidingWindow(5, "10 m"),
+        analytics: true,
+        prefix: "bsanxs:enquiries",
+      })
+    : null;
 
 function validEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -24,6 +39,49 @@ export async function POST(request: NextRequest) {
         { error: "Invalid request origin." },
         { status: 403 }
       );
+    }
+  }
+
+  // Require configured rate limiting in production.
+  if (!enquiryRateLimit && process.env.NODE_ENV === "production") {
+    return NextResponse.json(
+      { error: "The enquiry service is temporarily unavailable. Please try again shortly." },
+      { status: 503 }
+    );
+  }
+
+  if (enquiryRateLimit) {
+    const ip =
+      request.headers.get("x-real-ip")?.trim() ||
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      "unknown";
+
+    try {
+      const result = await enquiryRateLimit.limit(ip);
+
+      if (!result.success) {
+        const retryAfter = Math.max(
+          1,
+          Math.ceil((result.reset - Date.now()) / 1000)
+        );
+
+        return NextResponse.json(
+          { error: "Too many enquiry attempts. Please wait before trying again." },
+          {
+            status: 429,
+            headers: { "Retry-After": String(retryAfter) },
+          }
+        );
+      }
+    } catch {
+      console.error("Enquiry rate-limit service unavailable.");
+
+      if (process.env.NODE_ENV === "production") {
+        return NextResponse.json(
+          { error: "The enquiry service is temporarily unavailable. Please try again shortly." },
+          { status: 503 }
+        );
+      }
     }
   }
 
