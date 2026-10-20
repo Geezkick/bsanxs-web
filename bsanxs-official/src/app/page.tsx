@@ -498,6 +498,14 @@ export default function Home() {
                     <img className="service-image" src="/images/service-hardware.jpg"
                       alt="BSANXS hardware and electronics prototyping" loading="lazy" />
                   )}
+                  {index === 4 && (
+                    <img className="service-image" src="/images/service-iot.jpg"
+                      alt="BSANXS embedded systems and IoT" loading="lazy" />
+                  )}
+                  {index === 5 && (
+                    <img className="service-image" src="/images/service-3d-printing.jpg"
+                      alt="BSANXS 3D printing and product design" loading="lazy" />
+                  )}
                   <div className="service-tags">
                     {service.tags.map((tag) => <span key={tag}>{tag}</span>)}
                   </div>
@@ -533,7 +541,7 @@ export default function Home() {
             </p>
             <div className="pricing-price">
               <span>Starting at</span>
-              <strong>KSh 35,000</strong>
+              <strong>KSh 35,000 / US$270</strong>
             </div>
             <ul>
               <li>Up to 5 agreed website pages</li>
@@ -562,7 +570,7 @@ export default function Home() {
             </p>
             <div className="pricing-price">
               <span>Starting at</span>
-              <strong>KSh 65,000</strong>
+              <strong>KSh 65,000 / US$500</strong>
             </div>
             <ul>
               <li>Scoped web application or dashboard</li>
@@ -590,7 +598,7 @@ export default function Home() {
             </p>
             <div className="pricing-price">
               <span>Starting at</span>
-              <strong>KSh 15,000</strong>
+              <strong>KSh 15,000 / US$115</strong>
             </div>
             <ul>
               <li>Initial requirements review</li>
@@ -618,7 +626,7 @@ export default function Home() {
             </p>
             <div className="pricing-price">
               <span>Starting at</span>
-              <strong>KSh 30,000</strong>
+              <strong>KSh 30,000 / US$230</strong>
             </div>
             <ul>
               <li>Embedded firmware prototype</li>
@@ -646,7 +654,7 @@ export default function Home() {
             </p>
             <div className="pricing-price">
               <span>Starting at</span>
-              <strong>KSh 2,500</strong>
+              <strong>KSh 10,000 / US$80</strong>
             </div>
             <ul>
               <li>Small-print job assessment</li>
@@ -696,7 +704,7 @@ export default function Home() {
         </div>
 
         <p className="pricing-note">
-          All prices are indicative starting estimates in Kenyan shillings, not fixed quotations.
+          Prices are indicative starting estimates in KSh, with approximate USD equivalents for international clients. Neither currency display is a fixed quotation.
           Final pricing depends on requirements, complexity and agreed deliverables. Components,
           materials, 3D printing, fabrication, shipping, hosting, domains and third-party services
           may be charged separately. Work begins after scope, costs and milestones are agreed.

@@ -1888,9 +1888,11 @@ body:has(.products-page) {
 }
 
 .pricing-price strong {
-  font-size: clamp(21px, 2vw, 29px);
+  font-size: clamp(18px, 1.7vw, 27px);
   font-weight: 500;
-  letter-spacing: -.045em;
+  letter-spacing: -.035em;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .pricing-card ul {
@@ -1957,7 +1959,7 @@ body:has(.products-page) {
   }
 
   .pricing-price strong {
-    font-size: 28px;
+    font-size: clamp(18px, 4.5vw, 24px);
   }
 }
 
