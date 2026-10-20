@@ -57,6 +57,7 @@ const contactEmail = "hello@bsanxs.com";
 export default function ProductsPage() {
   return (
     <main className="products-page">
+      <div id="top" />
       <header className="products-nav">
         <Link href="/" className="products-brand">
           <img src="/images/bsanxs-logo.png" alt="BSANXS" />

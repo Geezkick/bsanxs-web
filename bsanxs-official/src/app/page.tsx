@@ -68,6 +68,217 @@ const principles = [
   },
 ];
 
+
+function ProjectEnquiryForm() {
+  const [submitting, setSubmitting] = useState(false);
+  const [feedback, setFeedback] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
+  async function handleSubmit(
+    event: React.FormEvent<HTMLFormElement>
+  ) {
+    event.preventDefault();
+    if (submitting) return;
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+
+    // Basic honeypot: quietly ignore obvious automated submissions.
+    if (String(data.get("website") || "").trim()) {
+      setFeedback({
+        type: "success",
+        text: "Thank you. Your enquiry has been received.",
+      });
+      form.reset();
+      return;
+    }
+
+    const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const company = String(data.get("company") || "").trim();
+    const service = String(data.get("service") || "").trim();
+    const budget = String(data.get("budget") || "").trim();
+    const message = String(data.get("message") || "").trim();
+
+    if (name.length < 2 || name.length > 120) {
+      setFeedback({ type: "error", text: "Please enter your full name." });
+      return;
+    }
+
+    if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setFeedback({ type: "error", text: "Please enter a valid email address." });
+      return;
+    }
+
+    if (message.length < 10 || message.length > 5000) {
+      setFeedback({
+        type: "error",
+        text: "Please describe your project in at least 10 characters.",
+      });
+      return;
+    }
+
+    if (company.length > 200 || service.length > 100 || budget.length > 100) {
+      setFeedback({
+        type: "error",
+        text: "One of the optional fields is too long. Please shorten it.",
+      });
+      return;
+    }
+
+    setSubmitting(true);
+    setFeedback(null);
+
+    try {
+      const response = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          company,
+          service,
+          budget,
+          message,
+          website: String(data.get("website") || ""),
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setFeedback({
+          type: "error",
+          text: result.error || "We couldn't submit your enquiry. Please try again.",
+        });
+        return;
+      }
+
+      form.reset();
+      setFeedback({
+        type: "success",
+        text: "Thank you. Your enquiry has been received by BSANXS.",
+      });
+    } catch {
+      setFeedback({
+        type: "error",
+        text: "A connection issue prevented submission. Please try again.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <form className="enquiry-form" onSubmit={handleSubmit}>
+      <div className="enquiry-grid">
+        <label className="enquiry-field">
+          <span>YOUR NAME *</span>
+          <input
+            name="name"
+            type="text"
+            autoComplete="name"
+            maxLength={120}
+            placeholder="Full name"
+            required
+          />
+        </label>
+
+        <label className="enquiry-field">
+          <span>EMAIL ADDRESS *</span>
+          <input
+            name="email"
+            type="email"
+            autoComplete="email"
+            maxLength={254}
+            placeholder="you@company.com"
+            required
+          />
+        </label>
+
+        <label className="enquiry-field">
+          <span>COMPANY <span className="field-optional">OPTIONAL</span></span>
+          <input
+            name="company"
+            type="text"
+            autoComplete="organization"
+            maxLength={200}
+            placeholder="Company or organisation"
+          />
+        </label>
+
+        <label className="enquiry-field">
+          <span>AREA OF INTEREST</span>
+          <select name="service" defaultValue="">
+            <option value="">Select a service</option>
+            <option value="Software Engineering">Software Engineering</option>
+            <option value="AI & Intelligent Systems">AI & Intelligent Systems</option>
+            <option value="Systems Integration">Systems Integration</option>
+            <option value="Digital Product Development">Digital Product Development</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+
+        <label className="enquiry-field enquiry-full">
+          <span>ESTIMATED BUDGET <span className="field-optional">OPTIONAL</span></span>
+          <select name="budget" defaultValue="">
+            <option value="">Prefer to discuss</option>
+            <option value="Under KSh 50,000">Under KSh 50,000</option>
+            <option value="KSh 50,000–150,000">KSh 50,000–150,000</option>
+            <option value="KSh 150,000–500,000">KSh 150,000–500,000</option>
+            <option value="Above KSh 500,000">Above KSh 500,000</option>
+            <option value="International / Other">International / Other</option>
+          </select>
+        </label>
+
+        <label className="enquiry-field enquiry-full">
+          <span>TELL US ABOUT YOUR PROJECT *</span>
+          <textarea
+            name="message"
+            rows={5}
+            minLength={10}
+            maxLength={5000}
+            placeholder="What are you looking to build, improve or solve?"
+            required
+          />
+        </label>
+
+        <label className="enquiry-honeypot" aria-hidden="true">
+          Website
+          <input
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </label>
+      </div>
+
+      <div className="enquiry-submit-row">
+        <p className="enquiry-privacy">
+          Your information will be used to respond to your project enquiry.
+        </p>
+        <button className="contact-button enquiry-submit" type="submit" disabled={submitting}>
+          {submitting ? "Sending..." : "Send enquiry"}
+          <ArrowUpRight size={18} />
+        </button>
+      </div>
+
+      {feedback && (
+        <p
+          className={`enquiry-feedback ${feedback.type}`}
+          role="status"
+          aria-live="polite"
+        >
+          {feedback.text}
+        </p>
+      )}
+    </form>
+  );
+}
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activePrinciple, setActivePrinciple] = useState(0);
@@ -328,12 +539,7 @@ export default function Home() {
           Have a challenge worth solving or an idea worth building?
           Let&apos;s start with a conversation.
         </p>
-        <a className="contact-button" href="mailto:hello@bsanxs.com?subject=Project%20Inquiry%20%E2%80%94%20BSANXS">
-          Discuss a project <ArrowUpRight size={18} />
-        </a>
-        <span className="contact-note">
-          Replace hello@bsanxs.com with your verified business email if needed.
-        </span>
+        <ProjectEnquiryForm />
       </section>
 
       <footer className="footer">
