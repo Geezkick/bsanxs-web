@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import AdminDashboard, { type Enquiry } from "./AdminDashboard";
 
 export const instant = false;
 
 export default async function AdminPage() {
+  await connection();
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getClaims();
 

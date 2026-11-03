@@ -77,18 +77,18 @@ export default function AdminDashboard({
   }
 
   const card: React.CSSProperties = {
-    border: "1px solid #2b2b36",
-    borderRadius: 14,
-    padding: 20,
-    background: "#121219",
+    border: "1px solid #e8e3f0",
+    borderRadius: 18,
+    padding: 24,
+    background: "#ffffff",
   };
 
   return (
     <main style={{
       minHeight: "100vh",
       padding: "32px clamp(16px, 4vw, 56px)",
-      background: "#09090d",
-      color: "#f5f5f7",
+      background: "#f5f3fa",
+      color: "#171321",
       fontFamily: "Arial, sans-serif",
     }}>
       <header style={{
@@ -99,10 +99,17 @@ export default function AdminDashboard({
         gap: 16,
         marginBottom: 36,
       }}>
-        <div>
-          <p style={{ color: "#a78bfa", letterSpacing: 3, fontSize: 12 }}>BSANXS / CONTROL</p>
+        <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
+          <img
+            src="/images/bsanxs-logo.png"
+            alt="BSANXS"
+            style={{ width: 155, maxWidth: "30vw", height: "auto", objectFit: "contain" }}
+          />
+          <div>
+          <p style={{ color: "#6d28d9", letterSpacing: 3, fontSize: 11, fontWeight: 700 }}>BSANXS / CONTROL</p>
           <h1 style={{ fontSize: "clamp(28px, 4vw, 42px)", margin: "8px 0" }}>Enquiries</h1>
-          <p style={{ color: "#a1a1aa" }}>Private project enquiry dashboard</p>
+          <p style={{ color: "#777386" }}>Private project enquiry dashboard</p>
+          </div>
         </div>
         <button onClick={signOut} style={buttonStyle}>Sign out</button>
       </header>
@@ -120,7 +127,7 @@ export default function AdminDashboard({
           ["Closed", enquiries.filter((e) => e.status === "closed").length],
         ].map(([label, count]) => (
           <div key={label} style={card}>
-            <p style={{ color: "#a1a1aa", marginTop: 0 }}>{label}</p>
+            <p style={{ color: "#777386", marginTop: 0 }}>{label}</p>
             <strong style={{ fontSize: 32 }}>{count}</strong>
           </div>
         ))}
@@ -135,7 +142,7 @@ export default function AdminDashboard({
       }}>
         <label htmlFor="filter">Filter:</label>
         <select id="filter" value={filter} onChange={(e) => setFilter(e.target.value)}
-          style={{ ...buttonStyle, background: "#121219" }}>
+          style={{ ...buttonStyle, background: "#ffffff" }}>
           <option value="all">All enquiries</option>
           <option value="new">New</option>
           <option value="in_progress">In progress</option>
@@ -143,12 +150,12 @@ export default function AdminDashboard({
         </select>
       </div>
 
-      {notice && <p role="status" style={{ color: "#c4b5fd", marginBottom: 20 }}>{notice}</p>}
+      {notice && <p role="status" style={{ color: "#6d28d9", marginBottom: 20 }}>{notice}</p>}
 
       {visible.length === 0 ? (
         <div style={card}>
           <h2>No enquiries to display</h2>
-          <p style={{ color: "#a1a1aa" }}>
+          <p style={{ color: "#777386" }}>
             New submissions will appear here when clients use your website form.
           </p>
         </div>
@@ -165,18 +172,18 @@ export default function AdminDashboard({
                 <div>
                   <h2 style={{ margin: "0 0 8px", fontSize: 21 }}>{item.name}</h2>
                   <a href={`mailto:${encodeURIComponent(item.email)}`}
-                    style={{ color: "#c4b5fd" }}>{item.email}</a>
-                  <p style={{ color: "#a1a1aa", fontSize: 13 }}>
+                    style={{ color: "#6d28d9" }}>{item.email}</a>
+                  <p style={{ color: "#777386", fontSize: 13 }}>
                     {new Date(item.created_at).toLocaleString()}
                   </p>
                 </div>
                 <label style={{ display: "grid", gap: 6, alignContent: "start" }}>
-                  <span style={{ fontSize: 12, color: "#a1a1aa" }}>Status</span>
+                  <span style={{ fontSize: 12, color: "#777386" }}>Status</span>
                   <select
                     value={item.status}
                     disabled={busy === item.id}
                     onChange={(e) => updateStatus(item.id, e.target.value as Enquiry["status"])}
-                    style={{ ...buttonStyle, background: "#09090d" }}
+                    style={{ ...buttonStyle, background: "#f5f3fa" }}
                   >
                     {Object.entries(statusLabels).map(([value, label]) => (
                       <option key={value} value={value}>{label}</option>
@@ -193,7 +200,7 @@ export default function AdminDashboard({
                 </p>
               )}
 
-              <p style={{ whiteSpace: "pre-wrap", lineHeight: 1.7, color: "#e4e4e7" }}>
+              <p style={{ whiteSpace: "pre-wrap", lineHeight: 1.7, color: "#302a3b" }}>
                 {item.message}
               </p>
             </article>
@@ -206,8 +213,8 @@ export default function AdminDashboard({
 
 const buttonStyle: React.CSSProperties = {
   padding: "10px 14px",
-  border: "1px solid #393944",
-  borderRadius: 8,
-  color: "#f5f5f7",
+  border: "1px solid #ddd7e8",
+  borderRadius: 10,
+  color: "#171321",
   cursor: "pointer",
 };

@@ -431,12 +431,14 @@ export default function Home() {
           </h2>
           <div className="intro-copy">
             <p>
-              BSANXS is a technology company focused on software engineering,
-              intelligent automation and connected digital systems.
+              BSANXS is an engineering-led technology company specialising
+              in software engineering, intelligent automation, and integrated
+              digital systems.
             </p>
             <p>
-              We combine technical thinking with purposeful execution to help
-              transform complex challenges into practical, scalable solutions.
+              We turn complex challenges into purposeful, scalable solutions
+              through rigorous engineering, thoughtful design, and
+              precision-driven execution.
             </p>
             <a className="text-link" href="#approach">
               Discover our approach <ArrowUpRight size={16} />
@@ -780,6 +782,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
 
       <section className="contact section-pad" id="contact">
         <div className="contact-top">

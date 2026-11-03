@@ -53,8 +53,8 @@ export default function AdminLoginPage() {
         display: "grid",
         placeItems: "center",
         padding: 24,
-        background: "#09090d",
-        color: "#f7f7fb",
+        background: "#f5f3fa",
+        color: "#171321",
         fontFamily: "Arial, sans-serif",
       }}
     >
@@ -63,17 +63,22 @@ export default function AdminLoginPage() {
         style={{
           width: "100%",
           maxWidth: 420,
-          padding: 32,
-          border: "1px solid #292932",
-          borderRadius: 18,
-          background: "#111116",
+          padding: 36,
+          border: "1px solid #e8e3f0",
+          borderRadius: 22,
+          background: "#ffffff",
         }}
       >
-        <p style={{ color: "#a78bfa", letterSpacing: 3, fontSize: 12 }}>
-          BSANXS
+        <img
+          src="/images/bsanxs-logo.png"
+          alt="BSANXS"
+          style={{ display: "block", width: 190, maxWidth: "100%", height: "auto", objectFit: "contain", marginBottom: 28 }}
+        />
+        <p style={{ color: "#6d28d9", letterSpacing: 3, fontSize: 11, fontWeight: 700 }}>
+          PRIVATE ADMINISTRATION
         </p>
         <h1 style={{ fontSize: 30, marginBottom: 8 }}>Admin sign in</h1>
-        <p style={{ color: "#a1a1aa", lineHeight: 1.6 }}>
+        <p style={{ color: "#777386", lineHeight: 1.6 }}>
           Authorized personnel only.
         </p>
 
@@ -113,9 +118,9 @@ export default function AdminLoginPage() {
             marginTop: 20,
             padding: 14,
             border: 0,
-            borderRadius: 9,
-            background: "#a78bfa",
-            color: "#09090d",
+            borderRadius: 11,
+            background: "#6d28d9",
+            color: "#ffffff",
             fontWeight: 700,
             cursor: loading ? "wait" : "pointer",
           }}
@@ -133,8 +138,8 @@ const fieldStyle = {
   width: "100%",
   padding: 12,
   margin: "8px 0 20px",
-  border: "1px solid #393944",
+  border: "1px solid #ddd7e8",
   borderRadius: 8,
-  background: "#09090d",
+  background: "#f5f3fa",
   color: "#ffffff",
 };
